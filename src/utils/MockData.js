@@ -56,3 +56,9 @@ export const getProductAsyncById = (id) => {
     res.json()
   )
 }
+
+export const getCategoriesAsync = () => {
+  return fetch('https://fakestoreapi.com/products/categories').then((res) =>
+    res.json()
+  )
+}

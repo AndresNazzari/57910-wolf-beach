@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react'
-import { getProductsAsync, getProductAsyncById } from '../../utils/MockData'
+import { getProductsAsync } from '../../utils/MockData'
 import ItemList from '../ItemList/ItemList'
 import Spinner from '../Spinner/Spinner'
-import { Counter } from '../Counter/Counter'
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
 
+  // const category = "men's clothing"
+
   useEffect(() => {
     console.log('antes de la promesa')
     getProductsAsync().then((products) => {
+      // const filteredProducts = products.filter(
+      //   (product) => product.category === category
+      // )
+      // setItems(filteredProducts)
       setItems(products)
       setLoading(false)
       console.log(products)
-    })
-
-    getProductAsyncById(3).then((product) => {
-      console.log(product)
     })
 
     // async function fetchData() {
