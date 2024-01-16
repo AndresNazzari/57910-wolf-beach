@@ -1,41 +1,40 @@
-import React, { useState, useEffect } from "react";
-import styles from "./ItemListContainer.module.scss";
-import PropTypes from "prop-types";
-import { getProducts } from "../../utils/MockData";
-import ItemList from "../ItemList/ItemList";
-import Spinner from "../Spinner/Spinner";
+import { useState, useEffect } from 'react'
+import { getProductsAsync, getProductAsyncById } from '../../utils/MockData'
+import ItemList from '../ItemList/ItemList'
+import Spinner from '../Spinner/Spinner'
 
-const ItemListContainer = ({}) => {
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
+const ItemListContainer = () => {
+  const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await getProducts();
-                setItems(response);
-                setLoading(false);
-            } catch (error) {
-                console.log(error);
-            }
-        }
+  useEffect(() => {
+    console.log('antes de la promesa')
+    getProductsAsync().then((products) => {
+      setItems(products)
+      setLoading(false)
+      console.log(products)
+    })
 
-        fetchData();
+    getProductAsyncById(3).then((product) => {
+      console.log(product)
+    })
 
-        // console.log("antes de la promesa");
-        // getProducts()
-        //     .then((res) => {
-        //         console.log("promesa se resolvio");
-        //         setItems(res);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
-    }, []);
+    // async function fetchData() {
+    //   try {
+    //     const response = await getProductsAsync()
+    //     setItems(response)
+    //     setLoading(false)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
 
-    return loading ? <Spinner /> : <ItemList itemList={items} />;
-};
+    // fetchData()
+  }, [])
 
-ItemListContainer.propTypes = {};
+  return loading ? <Spinner /> : <ItemList itemList={items} />
+}
 
-export default ItemListContainer;
+ItemListContainer.propTypes = {}
+
+export default ItemListContainer
