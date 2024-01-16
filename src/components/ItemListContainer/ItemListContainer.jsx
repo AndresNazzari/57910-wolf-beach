@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-
 import { getProductsAsync, getProductAsyncById } from '../../utils/MockData'
 import ItemList from '../ItemList/ItemList'
 import Spinner from '../Spinner/Spinner'
+import { Counter } from '../Counter/Counter'
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([])
@@ -33,7 +33,13 @@ const ItemListContainer = () => {
     // fetchData()
   }, [])
 
-  return loading ? <Spinner /> : <ItemList itemList={items} />
+  return loading ? (
+    <Spinner />
+  ) : (
+    <>
+      <ItemList itemList={items} />
+    </>
+  )
 }
 
 ItemListContainer.propTypes = {}
