@@ -1,14 +1,12 @@
-import React from "react";
-import Dashboard from "../../components/Dashboard/Dashboard";
-import ItemListContainer from "../../components/ItemListContainer/ItemListContainer";
+import React from 'react'
+import ItemListContainer from '../../components/ItemListContainer/ItemListContainer'
 
 const Home = () => {
-    return (
-        <Dashboard>
-            <div>Esto es Home</div>
-            <ItemListContainer />
-        </Dashboard>
-    );
-};
+  return (
+    <>
+      <div>Esto es Home</div>
+    </>
+  )
+}
 
-export default Home;
+export default Home

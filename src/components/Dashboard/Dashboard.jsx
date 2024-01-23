@@ -1,12 +1,17 @@
-import Navbar from "../Navbar/Navbar";
+import PropTypes from 'prop-types'
+import Navbar from '../Navbar/Navbar'
 
 const Dashboard = ({ children }) => {
-    return (
-        <div>
-            <Navbar />
-            <div>{children} </div>
-        </div>
-    );
-};
+  return (
+    <div>
+      <Navbar />
+      <div>{children} </div>
+    </div>
+  )
+}
 
-export default Dashboard;
+Dashboard.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default Dashboard

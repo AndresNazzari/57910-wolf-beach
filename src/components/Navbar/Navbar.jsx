@@ -1,5 +1,7 @@
 import styles from './Navbar.module.scss'
 import Logo from '../Logo/Logo'
+import { Link, NavLink } from 'react-router-dom'
+// import { Link as LinkBoostrap } from 'bootstrap' ejemplo de alias
 import { useEffect, useState } from 'react'
 import { getCategoriesAsync } from '../../utils/MockData'
 
@@ -14,13 +16,19 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <Logo />
+      <Link to='/'>
+        <Logo />
+      </Link>
       <div className={styles.links}>
-        <div>All products</div>
+        <Link to='/products'>All products</Link>
         {categories.map((category, index) => (
-          <div key={index} className={styles.link}>
+          <Link
+            to={`/products/${category}`}
+            key={index}
+            className={styles.link}
+          >
             {category}
-          </div>
+          </Link>
         ))}
       </div>
     </div>

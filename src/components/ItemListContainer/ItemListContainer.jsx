@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { getProductsAsync } from '../../utils/MockData'
 import ItemList from '../ItemList/ItemList'
 import Spinner from '../Spinner/Spinner'
@@ -6,33 +7,21 @@ import Spinner from '../Spinner/Spinner'
 const ItemListContainer = () => {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
-
-  // const category = "men's clothing"
+  const { categoryId } = useParams()
 
   useEffect(() => {
-    console.log('antes de la promesa')
     getProductsAsync().then((products) => {
-      // const filteredProducts = products.filter(
-      //   (product) => product.category === category
-      // )
-      // setItems(filteredProducts)
-      setItems(products)
-      setLoading(false)
-      console.log(products)
+      if (categoryId) {
+        const filteredProducts = products.filter(
+          (product) => product.category === categoryId
+        )
+        setItems(filteredProducts)
+      } else {
+        setItems(products)
+        setLoading(false)
+      }
     })
-
-    // async function fetchData() {
-    //   try {
-    //     const response = await getProductsAsync()
-    //     setItems(response)
-    //     setLoading(false)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
-
-    // fetchData()
-  }, [])
+  }, [categoryId])
 
   return loading ? (
     <Spinner />
