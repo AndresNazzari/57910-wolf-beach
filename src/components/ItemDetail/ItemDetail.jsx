@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
 import styles from './ItemDetail.module.scss'
 import ItemCount from '../ItemCount/ItemCount'
+import { useCartContext } from '../../routing/context/cartContext'
+
 const ItemDetail = ({ item }) => {
   const { title, description, image, price } = item
+  const { addItem } = useCartContext()
 
   const onAdd = (count) => {
     console.log(`Agregaste ${count} ${title} al carrito`)
+    addItem(item, count)
   }
 
   return (
