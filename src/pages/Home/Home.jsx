@@ -1,9 +1,9 @@
-import React from 'react'
-import ItemListContainer from '../../components/ItemListContainer/ItemListContainer'
+import { importProducts } from '../../firebase/importProducts'
 
 const Home = () => {
   return (
     <>
+      <button onClick={importProducts}>Import First Time</button>
       <div>Esto es Home</div>
     </>
   )

@@ -20,7 +20,7 @@ const Item = ({ id, name, price, image }) => {
 }
 
 Item.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
   image: PropTypes.string,

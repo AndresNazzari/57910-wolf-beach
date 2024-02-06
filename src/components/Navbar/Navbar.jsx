@@ -11,9 +11,9 @@ const Navbar = () => {
   const { itemsTotal } = useCartContext()
 
   useEffect(() => {
-    getCategoriesAsync().then((categories) => {
-      setCategories(categories)
-    })
+    // getCategoriesAsync().then((categories) => {
+    setCategories(['Fire', 'Water', 'Grass', 'Electric'])
+    // })
   }, [])
 
   return (
